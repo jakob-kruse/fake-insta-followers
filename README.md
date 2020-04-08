@@ -1,8 +1,10 @@
 # Fake instagram followers in bio
+![Node.js CI](https://github.com/jakob-kruse/fake-insta-followers/workflows/Node.js%20CI/badge.svg)
 
 This application automatically updates your bio with bold text to make it look like anyone is following you.
 
 IMPORTANT: Im not responsible for your account getting banned. Use this at you own risk. (I dont think you will get banned though)
+
 
 ## Demo
 
