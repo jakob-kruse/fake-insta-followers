@@ -46,3 +46,9 @@ Finally run `npm run start` and **leave it open**.
 ### With cronjob
 
 If you operating system supports cron jobs add `IS_CRON=true` to the `.env` file and setup a cronjob.
+
+#### Hint
+
+If you set the enviroment variable `NO_ENV` to `true`, the `.env` file will not be loaded. you can achieve this by running the command like this:
+
+`NO_ENV=true npm start`

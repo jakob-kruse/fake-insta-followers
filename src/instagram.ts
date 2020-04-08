@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import {
   AccountRepositoryLoginResponseLogged_in_user as IGUser,
-  IgApiClient
+  IgApiClient,
 } from "instagram-private-api";
 import { translate } from "./mapChars";
 
@@ -10,7 +10,7 @@ const ig = new IgApiClient();
 let previousValues = {
   followers: null,
   follower1: null,
-  follower2: null
+  follower2: null,
 };
 
 function makeBio(
@@ -63,19 +63,19 @@ function postLogin(): void {
 function shouldUpdate(followers: number): boolean {
   const {
     IG_FOLLOWER1: envFollower1,
-    IG_FOLLOWER2: envFollower2
+    IG_FOLLOWER2: envFollower2,
   } = process.env;
 
   const {
     follower1: prevFollower1,
     follower2: prevFollower2,
-    followers: prevFollowers
+    followers: prevFollowers,
   } = previousValues;
 
   previousValues = {
     followers,
     follower1: envFollower1,
-    follower2: envFollower2
+    follower2: envFollower2,
   };
 
   if (process.env.IS_CRON === "true") return true;
@@ -88,7 +88,9 @@ function shouldUpdate(followers: number): boolean {
 }
 
 export async function updateBio(): Promise<void> {
-  config();
+  if (process.env.NO_ENV_FILE !== "true") {
+    config();
+  }
 
   const loggedInUser = await setupUser();
 
@@ -114,9 +116,9 @@ export async function updateBio(): Promise<void> {
     }
   } else {
     console.log(
-      `Did not update bio because nothing changed. Next try in ${delay /
-        1000 /
-        60} minutes!`
+      `Did not update bio because nothing changed. Next try in ${
+        delay / 1000 / 60
+      } minutes!`
     );
   }
 
